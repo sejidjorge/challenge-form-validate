@@ -25,6 +25,7 @@ export const InputLabel = styled.label<LabelProps>`
   top: ${({ isEmpty }) => (isEmpty ? "0px" : "-12px")};
   left: 0px;
   font-size: ${({ isEmpty }) => (isEmpty ? "1rem" : "0.75rem")};
+  font-weight: lighter;
   color: ${({ color }) => color || (({ theme }) => theme.colors.text.primary)};
   pointer-events: none;
   transition: all 0.5s ease-in-out;
@@ -43,7 +44,7 @@ export const InputStyled = styled.input<InputProps>`
       box-shadow: 0 0 0 30px white inset;
     }
     input:-webkit-autofill {
-      -webkit-text-fill-color:  ${({ theme }) => theme.colors.primary};
+      -webkit-text-fill-color: ${({ theme }) => theme.colors.primary};
     }
   }
 

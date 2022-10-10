@@ -10,10 +10,11 @@ export const GlobalContainer = styled.div`
 
 export const BodyCard = styled.div`
   width: 30rem;
-  height: 40rem;
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.primary};
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 0.8px solid ${({ theme }) => theme.colors.text.secondary};
+  border-radius: 0.6rem;
 `;
