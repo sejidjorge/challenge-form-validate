@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContainerAction = styled.div`
   width: 28rem;
-  height: 6rem;
+  height: 7rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,7 +11,7 @@ export const ContainerAction = styled.div`
 
 export const LocationCell = styled.div`
   width: calc(28rem / 8);
-  height: 6rem;
+  height: 7rem;
 `;
 
 interface TypeButton {
