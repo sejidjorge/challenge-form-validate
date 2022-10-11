@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Action from "../components/action";
 import Card from "../components/card";
 import Input from "../components/input";
-import { Title } from "../components/typography";
+import { Title, Error } from "../components/typography";
 
 function App() {
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [pass, setPass] = useState<string>();
+  const [error, setError] = useState(false);
 
+  useEffect(() => {
+    if (
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(
+        pass!!
+      ) === false
+    ) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }, [pass, error]);
 
   return (
     <div className="App">
@@ -21,9 +33,28 @@ function App() {
             label="Password"
             type="password"
             value={pass}
+            error={error}
             setValue={setPass}
           />
-          <Action pass={pass!!} />
+          {/([A-Z])/.test(pass!!) === false && (
+            <Error>A senha precisa ter pelo menos uma maiuscula.</Error>
+          )}
+          {/([a-z])/.test(pass!!) === false && (
+            <Error>A senha precisa ter pelo menos uma minuscula.</Error>
+          )}
+          {/([0-9])/.test(pass!!) === false && (
+            <Error>A senha precisa ter pelo menos um numero.</Error>
+          )}
+          {/([#?!@$%^&*-])/.test(pass!!) && (
+            <Error>
+              A senha precisa ter pelo menos um destes caracteres especias
+              (#?!@$%^&*-).
+            </Error>
+          )}
+          {pass && pass.length < 8 && (
+            <Error>A senha precisa ter pelo menos oito digitos.</Error>
+          )}
+          <Action error={error} />
         </>
       </Card>
     </div>

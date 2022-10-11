@@ -7,6 +7,7 @@ interface LabelProps {
 
 interface InputProps {
   color?: string;
+  error?: boolean;
 }
 
 export const Container = styled.div`
@@ -44,18 +45,28 @@ export const InputStyled = styled.input<InputProps>`
       box-shadow: 0 0 0 30px white inset;
     }
     input:-webkit-autofill {
-      -webkit-text-fill-color: ${({ theme }) => theme.colors.primary};
+      -webkit-text-fill-color: ${({ error }) =>
+        error === true
+          ? ({ theme }) => theme.colors.error
+          : ({ theme }) => theme.colors.primary};
     }
   }
 
   min-width: 18rem;
   padding: 8px 0 5px 0;
   font-size: 16px;
-  color: ${({ color }) => color || "#FFF"};
+  color: ${({ error }) =>
+    error === true
+      ? ({ theme }) => theme.colors.error
+      : ({ color }) => color || "#fff"};
   &:focus {
     outline: none;
     border: none;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
+    border-bottom: 1px solid
+      ${({ error }) =>
+        error === true
+          ? ({ theme }) => theme.colors.error
+          : ({ theme }) => theme.colors.text.primary};
     ~ ${InputLabel} {
       top: -12px;
       color: ${({ theme }) => theme.colors.text.primary};
